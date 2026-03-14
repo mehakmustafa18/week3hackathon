@@ -1,0 +1,139 @@
+.footer {
+  background: #F4F4F4;
+  padding-top: 56px;
+  margin-top: 80px;
+  gap: 24px;
+}
+
+.footer__inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px;
+  padding-bottom: 48px;
+}
+
+.footer__col h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  text-transform: uppercase;
+  color: var(--black);
+  margin-bottom: 20px;
+}
+
+.footer__col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+.footer__col ul li a,
+.footer__col ul li {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: #282828;
+  transition: color var(--transition);
+}
+
+.footer__col ul li a:hover { color: var(--black); }
+
+.footer__contact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--gray-600);
+  line-height: 1.5;
+}
+
+.footer__contact svg { flex-shrink: 0; margin-top: 2px; }
+
+.footer__bottom {
+  padding: 20px 40px;
+  text-align: center;
+}
+
+/* ── RESPONSIVE MEDIA QUERIES ── */
+
+/* Tablet - 900px */
+@media (max-width: 900px) {
+  .footer__inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    padding: 0 20px 40px;
+  }
+
+  .footer {
+    margin-top: 60px;
+    padding-top: 40px;
+  }
+}
+
+/* Tablet - 768px */
+@media (max-width: 768px) {
+  .footer {
+    margin-top: 48px;
+    padding-top: 32px;
+  }
+
+  .footer__inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    padding: 0 0 32px;
+  }
+
+  .footer__col h4 {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  .footer__col ul li a,
+  .footer__col ul li {
+    font-size: 13px;
+  }
+
+  .footer__bottom {
+    padding: 16px 20px;
+    font-size: 12px;
+  }
+}
+
+/* Mobile - 480px */
+@media (max-width: 480px) {
+  .footer {
+    margin-top: 40px;
+    padding-top: 28px;
+  }
+
+  .footer__inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 0 0 28px;
+  }
+
+  .footer__col h4 {
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  .footer__col ul {
+    gap: 8px;
+  }
+
+  .footer__col ul li a,
+  .footer__col ul li {
+    font-size: 13px;
+  }
+
+  .footer__contact li {
+    font-size: 12px;
+  }
+
+  .footer__bottom {
+    padding: 16px;
+    font-size: 11px;
+  }
+}
