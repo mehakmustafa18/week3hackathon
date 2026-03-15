@@ -1,0 +1,18 @@
+# Dependencies
+tea-backend/node_modules/
+tea-frontend/node_modules/
+
+# Environment files
+tea-backend/.env
+tea-frontend/.env
+
+# Build folder
+tea-frontend/build/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
