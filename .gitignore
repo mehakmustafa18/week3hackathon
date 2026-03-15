@@ -1,6 +1,8 @@
 # Dependencies
 tea-backend/node_modules/
 tea-frontend/node_modules/
+frontend1/node_modules/
+node_modules/
 
 # Environment files
 tea-backend/.env
