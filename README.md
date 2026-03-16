@@ -43,7 +43,7 @@ A full-stack premium tea e-commerce platform built with React.js and Node.js/Exp
 ## 🗂️ Project Structure
 
 ```
-tea-ecommerce/
+Hackathon3/
 ├── tea-backend/
 │   ├── config/
 │   │   └── db.js
@@ -70,7 +70,7 @@ tea-ecommerce/
 │   ├── seed.js
 │   └── package.json
 │
-└── tea-frontend/
+└── frontend1/
     ├── public/
     │   └── assets/
     │       └── img/
@@ -113,8 +113,8 @@ tea-ecommerce/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/tea-ecommerce.git
-cd tea-ecommerce
+git clone https://github.com/mehakmustafa18/week3hackathon.git
+cd Hackathon3
 ```
 
 ### 2. Backend Setup
@@ -153,11 +153,11 @@ Backend runs on: `http://localhost:5000`
 ### 3. Frontend Setup
 
 ```bash
-cd tea-frontend
+cd frontend1
 npm install
 ```
 
-Create `.env` file in `tea-frontend/`:
+Create `.env` file in `frontend1/`:
 
 ```env
 REACT_APP_API_URL=http://localhost:5000/api
@@ -242,7 +242,7 @@ Frontend runs on: `http://localhost:3000`
 
 ### Frontend
 1. Update `REACT_APP_API_URL` to Railway backend URL
-2. New Project → Deploy from GitHub → select `tea-frontend`
+2. New Project → Deploy from GitHub → select `frontend1`
 3. Build Command: `npm run build`
 4. Start Command: `npx serve -s build`
 
