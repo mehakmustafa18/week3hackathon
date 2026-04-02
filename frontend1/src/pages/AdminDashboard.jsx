@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { adminAPI, orderAPI, productAPI } from '../api';
+import { adminAPI, orderAPI, productAPI, reviewAPI } from '../api';
 import { toast } from 'react-toastify';
+import { useAuth } from '../context/AuthContext';
 import './AdminDashboard.css';
 
 const StatCard = ({ label, value, icon }) => (
@@ -13,7 +14,7 @@ const StatCard = ({ label, value, icon }) => (
   </div>
 );
 
-const TABS = ['Overview', 'Products', 'Orders', 'Users'];
+const TABS = ['Overview', 'Products', 'Orders', 'Users', 'Reviews'];
 const CATEGORIES = ['Black Tea','Green Tea','White Tea','Matcha','Herbal Tea','Chai','Oolong','Rooibos','Teaware'];
 const CAFFEINE_OPTIONS = ['No Caffeine','Low Caffeine','Medium Caffeine','High Caffeine'];
 
@@ -265,30 +266,72 @@ const ProductFormModal = ({ editProduct, onClose, onSave }) => {
 
 /* ── Main AdminDashboard ── */
 const AdminDashboard = () => {
+  const { user } = useAuth();
   const [tab, setTab]           = useState('Overview');
   const [stats, setStats]       = useState(null);
   const [products, setProducts] = useState([]);
   const [orders, setOrders]     = useState([]);
   const [users, setUsers]       = useState([]);
+  const [reviews, setReviews]   = useState([]);
   const [loading, setLoading]   = useState(true);
   const [showForm, setShowForm]       = useState(false);
   const [editProduct, setEditProduct] = useState(null);
+  const [replyingTo, setReplyingTo]   = useState(null);
+  const [replyText, setReplyText]     = useState('');
 
   const fetchAll = async () => {
     setLoading(true);
+    console.log('🔄 Fetching dashboard data...');
     try {
-      const [statsRes, ordersRes, usersRes, productsRes] = await Promise.all([
-        adminAPI.getStats(),
-        orderAPI.getAll({ limit: 50 }),
-        adminAPI.getUsers(),
-        productAPI.getAll({ limit: 50 })
+      const results = await Promise.allSettled([
+        adminAPI.getStats().then(r => { console.log('✅ Stats loaded'); return r; }).catch(err => { console.error('❌ Stats error:', err); throw err; }),
+        orderAPI.getAll({ limit: 50 }).then(r => { console.log('✅ Orders loaded'); return r; }).catch(err => { console.error('❌ Orders error:', err); throw err; }),
+        adminAPI.getUsers().then(r => { console.log('✅ Users loaded'); return r; }).catch(err => { console.error('❌ Users error:', err); throw err; }),
+        productAPI.getAll({ limit: 50 }).then(r => { console.log('✅ Products loaded'); return r; }).catch(err => { console.error('❌ Products error:', err); throw err; }),
+        reviewAPI.getAll().then(r => { console.log('✅ Reviews loaded'); return r; }).catch(err => { console.error('❌ Reviews error:', err); throw err; })
       ]);
-      setStats(statsRes.data);
-      setOrders(ordersRes.data.orders);
-      setUsers(usersRes.data.users);
-      setProducts(productsRes.data.products);
+
+      if (results[0].status === 'fulfilled') {
+        setStats(results[0].value.data);
+      } else {
+        console.error('Stats failed:', results[0].reason);
+      }
+
+      if (results[1].status === 'fulfilled') {
+        setOrders(results[1].value.data.orders || []);
+      } else {
+        console.error('Orders failed:', results[1].reason);
+      }
+
+      if (results[2].status === 'fulfilled') {
+        setUsers(results[2].value.data.users || []);
+      } else {
+        console.error('Users failed:', results[2].reason);
+      }
+
+      if (results[3].status === 'fulfilled') {
+        setProducts(results[3].value.data.products || []);
+      } else {
+        console.error('Products failed:', results[3].reason);
+      }
+
+      if (results[4].status === 'fulfilled') {
+        setReviews(results[4].value.data || []);
+      } else {
+        console.error('Reviews failed:', results[4].reason);
+      }
+
+      const failedCount = results.filter(r => r.status === 'rejected').length;
+      if (failedCount > 0) {
+        if (failedCount === results.length) {
+          toast.error('All data sources failed. Please check your internet and server status.');
+        } else {
+          toast.warning(`Warning: ${failedCount} data source(s) failed to load.`);
+        }
+      }
     } catch (err) {
-      toast.error('Failed to load dashboard data');
+      console.error('CRITICAL dashboard error:', err);
+      toast.error('Critical error loading dashboard components');
     } finally {
       setLoading(false);
     }
@@ -323,6 +366,33 @@ const AdminDashboard = () => {
       setProducts(prev => prev.filter(p => p._id !== productId));
       toast.success('Product deactivated');
     } catch (err) { toast.error('Error'); }
+  };
+  const handleLike = async (reviewId) => {
+    try {
+      const { data } = await reviewAPI.toggleLike(reviewId, user?._id);
+      // The backend returns the updated review object (data)
+      setReviews(prev => prev.map(r => r._id === reviewId ? { ...r, likes: data.likes } : r));
+    } catch (err) { toast.error('Error liking review'); }
+  };
+
+  const handleReply = async (reviewId) => {
+    if (!replyText.trim()) return;
+    try {
+      const { data } = await reviewAPI.addReply(reviewId, {
+        userId: user?._id,
+        userName: user?.name,
+        comment: replyText
+      });
+      // The backend returns the saved reply object (data)
+      setReviews(prev => prev.map(r => 
+        r._id === reviewId 
+          ? { ...r, replies: [...(r.replies || []), data] } 
+          : r
+      ));
+      setReplyText('');
+      setReplyingTo(null);
+      toast.success('Reply added');
+    } catch (err) { toast.error('Error adding reply'); }
   };
 
   if (loading) return <div className="admin-loader"><div className="spinner"/></div>;
@@ -461,6 +531,58 @@ const AdminDashboard = () => {
               ))}
             </tbody>
           </table>
+        </div>
+      )}
+
+      {/* Reviews */}
+      {tab === 'Reviews' && (
+        <div className="admin-section">
+          <h2>Product Reviews ({reviews.length})</h2>
+          <div className="admin-reviews-list">
+            {reviews.map(r => (
+              <div key={r._id} className="admin-review-card">
+                <div className="admin-review-card__header">
+                  <div>
+                    <span className="admin-review-card__author">{r.userName}</span>
+                    <span className="admin-review-card__stars">{'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}</span>
+                  </div>
+                  <span className="admin-review-card__date">{new Date(r.createdAt).toLocaleDateString()}</span>
+                </div>
+                <p className="admin-review-card__comment">{r.comment}</p>
+                
+                <div className="admin-review-card__actions">
+                  <button className="admin-review-action" onClick={() => handleLike(r._id)}>
+                    Like ({r.likes?.length || 0})
+                  </button>
+                  <button className="admin-review-action" onClick={() => setReplyingTo(replyingTo === r._id ? null : r._id)}>
+                    Reply
+                  </button>
+                </div>
+
+                {replyingTo === r._id && (
+                  <div className="admin-review-reply-form">
+                    <textarea 
+                      value={replyText} 
+                      onChange={(e) => setReplyText(e.target.value)} 
+                      placeholder="Type your reply..."
+                    />
+                    <button className="btn-primary" onClick={() => handleReply(r._id)}>Submit Reply</button>
+                  </div>
+                )}
+
+                {r.replies?.length > 0 && (
+                  <div className="admin-review-replies">
+                    {r.replies.map(rp => rp && (
+                      <div key={rp._id} className="admin-review-reply">
+                        <span className="admin-review-reply__author">{rp.userName || 'Admin'}:</span>
+                        <span className="admin-review-reply__text">{rp.comment}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>

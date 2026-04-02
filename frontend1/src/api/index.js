@@ -68,4 +68,23 @@ export const adminAPI = {
   changeRole:    (id, role) => API.put(`/admin/users/${id}/role`, { role })
 };
 
+// ─── Reviews (NestJS) ─────────────────────────────────────
+const REVIEWS_API = axios.create({
+  baseURL: process.env.REACT_APP_REVIEWS_API_URL || 'http://localhost:5001'
+});
+
+REVIEWS_API.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
+  if (token) config.headers.Authorization = `Bearer ${token}`;
+  return config;
+});
+
+export const reviewAPI = {
+  getForProduct: (productId) => REVIEWS_API.get(`/reviews/product/${productId}`),
+  getAll:        ()          => REVIEWS_API.get('/reviews'),
+  create:        (data)      => REVIEWS_API.post('/reviews', data),
+  addReply:      (id, data)  => REVIEWS_API.post(`/reviews/${id}/reply`, data),
+  toggleLike:    (id, userId) => REVIEWS_API.put(`/reviews/${id}/like`, { userId })
+};
+
 export default API;

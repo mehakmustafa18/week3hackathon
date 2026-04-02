@@ -37,15 +37,15 @@ const Footer = () => (
         <h4>Contact Us</h4>
         <ul className="footer__contact">
           <li>
-            <img src="/assets/location_on.png" alt="Location Icon" />
+            <img src="/assets/images/icons/location_on.png" alt="Location Icon" />
             2 Palace, Palace St, Peakerton Ave, Shirley, Paris Prestonshire
           </li>
           <li>
-             <img src="/assets/mail.png" alt="Email Icon" />
+             <img src="/assets/images/icons/mail.png" alt="Email Icon" />
             Email: alianjara@gmail.com
           </li>
           <li>
-            <img src="/assets/call.png" alt="Phone Icon" />
+            <img src="/assets/images/icons/call.png" alt="Phone Icon" />
             Tel: +44 7972306040
           </li>
         </ul>

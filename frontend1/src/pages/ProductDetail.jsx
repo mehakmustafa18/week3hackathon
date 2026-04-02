@@ -4,15 +4,16 @@ import { productAPI } from '../api';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
+import ReviewSection from '../components/ReviewSection';
 import './ProductDetail.css';
 
 const VARIANT_IMAGES = {
-  '50g bag':  '/assets/Group 27.png',
-  '100g bag': '/assets/Group 27 (1).png',
-  '175g bag': '/assets/Group.png',
-  '250g bag': '/assets/Group 27 (2).png',
-  '1kg bag':  '/assets/Group 27 (3).png',
-  'Sampler':  '/assets/Group 24.png',
+  '50g bag':  '/assets/images/icons/Group 27.png',
+  '100g bag': '/assets/images/icons/Group 27 (1).png',
+  '175g bag': '/assets/images/icons/Group.png',
+  '250g bag': '/assets/images/icons/Group 27 (2).png',
+  '1kg bag':  '/assets/images/icons/Group 27 (3).png',
+  'Sampler':  '/assets/images/icons/Group 24.png',
 };
 
 const ProductDetail = () => {
@@ -85,9 +86,9 @@ console.log('Variants:', product?.variants?.map(v => v.size));
 
           {/* Badges */}
           <div className="product-detail__badges">
-            {product.origin    && <span className="pd-badge"><span><img src="/assets/language.png" alt="" /></span> Organic: {product.origin}</span>}
-            {product.isOrganic && <span className="pd-badge"><span><img src="/assets/redeem (1).png" alt="" /></span> Organic</span>}
-            {product.isVegan   && <span className="pd-badge"><span><img src="/assets/eco.png" alt="" /></span> Vegan</span>}
+            {product.origin    && <span className="pd-badge"><span><img src="/assets/images/icons/language.png" alt="" /></span> Origin: {product.origin}</span>}
+            {product.isOrganic && <span className="pd-badge"><span><img src="/assets/images/icons/redeem (1).png" alt="" /></span> Organic</span>}
+            {product.isVegan   && <span className="pd-badge"><span><img src="/assets/images/icons/eco.png" alt="" /></span> Vegan</span>}
           </div>
 
           {/* Price */}
@@ -106,7 +107,7 @@ console.log('Variants:', product?.variants?.map(v => v.size));
   title={v.stock === 0 ? 'Out of stock' : v.size}
 >
   <img 
-    src={VARIANT_IMAGES[v.size] || '/assets/Group.png'} 
+    src={VARIANT_IMAGES[v.size] || '/assets/images/icons/Group.png'} 
     alt={v.size}
     style={{ width: '28px', height: '28px', objectFit: 'cover' }}
   />
@@ -150,28 +151,28 @@ console.log('Variants:', product?.variants?.map(v => v.size));
             <h2>Steeping instructions</h2>
             <div className="steeping-grid">
               <div className="steeping-item">
-                <img src="/assets/Kettle.png" alt="" />
+                <img src="/assets/images/icons/kettle.png" alt="" />
                 <div>
                   <span className="steeping-label">Serving size</span>
                   <span className="steeping-value">{product.steepingInstructions.servingSize}</span>
                 </div>
               </div>
               <div className="steeping-item">
-                <img src="/assets/Water_voc.png" alt="" />
+                <img src="/assets/images/icons/water_voc.png" alt="" />
                 <div>
                   <span className="steeping-label">Water temperature</span>
                   <span className="steeping-value">{product.steepingInstructions.waterTemp}</span>
                 </div>
               </div>
               <div className="steeping-item">
-                <img src="/assets/alarm.png" alt="" />
+                <img src="/assets/images/icons/alarm.png" alt="" />
                 <div>
                   <span className="steeping-label">Steeping time</span>
                   <span className="steeping-value">{product.steepingInstructions.steepingTime}</span>
                 </div>
               </div>
               <div className="steeping-item steeping-item--color">
-                <img src="/assets/Ellipse 2.png" alt="" />
+                <img src="/assets/images/icons/Ellipse 2.png" alt="" />
                 <div>
                   <span className="steeping-label">Color after</span>
                   <span className="steeping-value">{product.steepingInstructions.colorAfter}</span>
@@ -225,6 +226,11 @@ console.log('Variants:', product?.variants?.map(v => v.size));
           </div>
         </div>
       )}
+
+      {/* ── Reviews ── */}
+      <div className="container" id="reviews">
+        <ReviewSection key={id} productId={id} />
+      </div>
     </div>
   );
 };

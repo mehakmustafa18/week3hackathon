@@ -12,6 +12,7 @@ import { CartProvider }    from './context/CartContext';
 import Navbar      from './components/layout/Navbar';
 import Footer      from './components/layout/Footer';
 import CartSidebar from './components/cart/CartSidebar';
+import SocketManager from './components/SocketManager';
 
 // Route guards
 import { ProtectedRoute, AdminRoute, GuestRoute } from './components/common/ProtectedRoute';
@@ -38,6 +39,7 @@ const Layout = ({ children, hideFooter }) => (
 const App = () => (
   <BrowserRouter>
     <AuthProvider>
+      <SocketManager />
       <CartProvider>
         <Routes>
           {/* Public routes */}

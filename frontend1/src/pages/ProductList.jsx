@@ -170,7 +170,7 @@ const ProductList = () => {
     <div className="product-list-page">
       {/* Hero banner */}
       <div className="product-list__banner">
-        <img src="/assets/collections-banner.png" alt="Tea collections" />
+        <img src="/assets/images/collections-hero.png" alt="Tea collections" />
       </div>
 
       {/* Breadcrumb */}

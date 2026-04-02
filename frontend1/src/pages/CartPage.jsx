@@ -9,11 +9,11 @@ import './CartPage.css';
 const STEPS = ['My Bag', 'Delivery', 'Review & Payment'];
 
 const PAYMENT_ICONS = [
-  { name: 'Visa',       img: '/assets/Visa (1).png' },
-  { name: 'Mastercard', img: '/assets/mastercard-dark-large.png' },
-  { name: 'Maestro',    img: '/assets/maestro-dark-large.png' },
-  { name: 'Group 30',   img: '/assets/Group 30.png' },
-  { name: 'Group 29',   img: '/assets/Group 29.png' },
+  { name: 'Visa',       img: '/assets/images/icons/Visa.png' },
+  { name: 'Mastercard', img: '/assets/images/icons/mastercard-dark-large.png' },
+  { name: 'Maestro',    img: '/assets/images/icons/maestro-dark-large (1).png' },
+  { name: 'Group 30',   img: '/assets/images/icons/Group 30.png' },
+  { name: 'Group 29',   img: '/assets/images/icons/Group 29.png' },
 ];
 /* ─── Step 1: My Bag ─── */
 const BagStep = ({ cart, cartTotal, updateQuantity, removeItem, onNext }) => (
@@ -231,9 +231,11 @@ const CartPage = () => {
                 <span>€{total.toFixed(2)}</span>
               </div>
             </div>
-            <p className="order-summary__shipping-note">
-              Estimated shipping time: 2 days
-            </p>
+            <div className="order-summary__shipping-note">
+              <img src="/assets/images/icons/local_shipping.png" alt="Shipping" style={{ width: '22px', height: '22px', marginRight: '8px' }} />
+              <span>Estimated shipping time: 2 days</span>
+            </div>
+
             {step === 0 && cart.items.length > 0 && (
               <button className="btn-primary order-summary__checkout" onClick={() => setStep(1)}>
                 Check Out
@@ -253,6 +255,18 @@ const CartPage = () => {
                     />
                   </div>
                 ))}
+              </div>
+            </div>
+
+            {/* Trust Badges */}
+            <div className="order-summary__trust-badges">
+              <div className="trust-badge">
+                <img src="/assets/images/icons/Group.png" alt="Secure" style={{ width: '18px' }} />
+                <span>Secure Checkout</span>
+              </div>
+              <div className="trust-badge">
+                <img src="/assets/images/icons/eco.png" alt="Eco" style={{ width: '18px' }} />
+                <span>Eco Friendly</span>
               </div>
             </div>
 

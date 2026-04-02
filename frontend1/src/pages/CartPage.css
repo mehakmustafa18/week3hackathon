@@ -206,14 +206,20 @@
 }
 
 .order-summary__shipping-note {
+  display: flex;
+  align-items: center;
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
   letter-spacing: 0.5px;
   color: var(--gray-400);
   margin-bottom: 16px;
+}
+.order-summary__shipping-note img {
+  opacity: 0.8;
+  margin-right: 8px;
 }
 
 .order-summary__checkout { width: 100%; padding: 16px; margin-bottom: 24px; }

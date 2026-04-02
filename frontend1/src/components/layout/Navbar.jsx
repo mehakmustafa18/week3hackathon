@@ -30,7 +30,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="navbar__logo">
             <img 
-             src="/assets/psychiatry.png" 
+             src="/assets/images/logo.png" 
              alt="Brand Logo" 
                />
             <span>Brand Name</span>
@@ -47,13 +47,13 @@ const Navbar = () => {
           {/* Right Icons */}
           <div className="navbar__actions">
             <button className="navbar__icon-btn" onClick={() => setSearchOpen(!searchOpen)} aria-label="Search">
-              <img src="/assets/search.png" alt="" />
+              <img src="/assets/images/icons/Search.png" alt="" />
             </button>
 
             {user ? (
               <div className="navbar__user-menu">
                 <button className="navbar__icon-btn" aria-label="Account">
-                  <img src="/assets/person.png" alt="" />
+                  <img src="/assets/images/icons/Person.png" alt="" />
                 </button>
                 <div className="navbar__dropdown">
                   <span className="navbar__dropdown-name">{user.name}</span>

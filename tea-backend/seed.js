@@ -11,7 +11,7 @@ const products = [
     subtitle: 'A lovely warming Chai tea with ginger cinnamon flavours.',
     description: 'Black Ceylon tea, Green tea, Ginger root, Cloves, Black pepper, Cinnamon sticks, Cardamom, Cinnamon pieces.',
     category: 'Chai',
-    images: ['/assets/Image Holder (1).png'],
+    images: ['/assets/images/products/product-1.png'],
     variants: [
       { size: '50g bag',  price: 3.90, stock: 50 },
       { size: '100g bag', price: 6.85, stock: 40 },
@@ -40,7 +40,7 @@ const products = [
     subtitle: 'A timeless bergamot-scented black tea.',
     description: 'Premium black tea leaves from Assam blended with natural bergamot oil for a classic Earl Grey experience.',
     category: 'Black Tea',
-    images: ['/assets/image2.png'],
+    images: ['/assets/images/products/product-2.png'],
     variants: [
       { size: '50g bag',  price: 3.50, stock: 60 },
       { size: '100g bag', price: 6.20, stock: 45 },
@@ -68,7 +68,7 @@ const products = [
     subtitle: 'Fresh, grassy and delicately sweet green tea.',
     description: 'Authentic Japanese Sencha grown in the Shizuoka region. Light, fresh and full of antioxidants.',
     category: 'Green Tea',
-    images: ['/assets/Image Holder (3).png'],
+    images: ['/assets/images/products/product-3.png'],
     variants: [
       { size: '50g bag',  price: 4.20, stock: 55 },
       { size: '100g bag', price: 7.50, stock: 40 },
@@ -95,7 +95,7 @@ const products = [
     subtitle: 'Delicate and rare white tea from Fujian.',
     description: 'The finest white tea made from young tea buds. Exceptionally light with a subtle sweetness.',
     category: 'White Tea',
-    images: ['/assets/Image Holder (4).png'],
+    images: ['/assets/images/products/product-4.png'],
     variants: [
       { size: '50g bag',  price: 6.50, stock: 30 },
       { size: '100g bag', price: 11.00, stock: 20 },
@@ -121,7 +121,7 @@ const products = [
     subtitle: 'Vibrant, smooth and creamy ceremonial matcha.',
     description: 'Stone-ground ceremonial grade matcha from Uji, Japan. Perfect for traditional whisking or lattes.',
     category: 'Matcha',
-    images: ['/assets/Image Holder (5).png'],
+    images: ['/assets/images/products/product-5.png'],
     variants: [
       { size: '50g bag',  price: 12.00, stock: 40 },
       { size: '100g bag', price: 22.00, stock: 25 },
@@ -147,7 +147,7 @@ const products = [
     subtitle: 'Soothing blend for relaxation and sleep.',
     description: 'Egyptian chamomile flowers blended with French lavender. Naturally caffeine-free and wonderfully calming.',
     category: 'Herbal Tea',
-    images: ['/assets/Image Holder (6).png'],
+    images: ['/assets/images/products/product-6.png'],
     variants: [
       { size: '50g bag',  price: 3.80, stock: 70 },
       { size: '100g bag', price: 6.50, stock: 50 },
@@ -174,7 +174,7 @@ const products = [
     subtitle: 'Lightly oxidised oolong with floral notes.',
     description: 'Traditional Taiwanese Dong Ding oolong. Complex, floral and smooth with a lingering sweetness.',
     category: 'Oolong',
-    images: ['/assets/Image Holder (7).png'],
+    images: ['/assets/images/products/product-7.png'],
     variants: [
       { size: '50g bag',  price: 5.50, stock: 35 },
       { size: '100g bag', price: 9.80, stock: 25 },
@@ -200,7 +200,7 @@ const products = [
     subtitle: 'Naturally sweet caffeine-free South African rooibos.',
     description: 'Premium red rooibos from the Cederberg mountains blended with natural vanilla. Rich, smooth and naturally sweet.',
     category: 'Rooibos',
-    images: ['/assets/Image Holder (8).png'],
+    images: ['/assets/images/products/product-8.png'],
     variants: [
       { size: '50g bag',  price: 3.50, stock: 60 },
       { size: '100g bag', price: 6.00, stock: 45 },
@@ -227,7 +227,7 @@ const products = [
     subtitle: 'Pure and invigorating peppermint leaves.',
     description: 'Single-origin peppermint leaves from Morocco. Intensely fresh, naturally sweet and wonderfully cooling.',
     category: 'Herbal Tea',
-    images: ['/assets/Image Holder (9).png'],
+    images: ['/assets/images/products/product-9.png'],
     variants: [
       { size: '50g bag',  price: 3.20, stock: 80 },
       { size: '100g bag', price: 5.50, stock: 60 },

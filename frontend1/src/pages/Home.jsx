@@ -4,22 +4,22 @@ import { productAPI } from '../api';
 import './Home.css';
 
 const COLLECTIONS = [
-  { name: 'Black Tea',  img: '/assets/black-tea.png',   slug: 'Black Tea' },
-  { name: 'Green Tea',  img: '/assets/green-tea.png',   slug: 'Green Tea' },
-  { name: 'White Tea',  img: '/assets/white-tea.png',   slug: 'White Tea' },
-  { name: 'Matcha',     img: '/assets/matcha.png',      slug: 'Matcha' },
-  { name: 'Herbal Tea', img: '/assets/herbal-tea.png',  slug: 'Herbal Tea' },
-  { name: 'Chai',       img: '/assets/chai-tea.png',    slug: 'Chai' },
-  { name: 'Oolong',     img: '/assets/oolong.png',      slug: 'Oolong' },
-  { name: 'Rooibos',    img: '/assets/rooibos.png',     slug: 'Rooibos' },
-  { name: 'Teaware',    img: '/assets/teaware.png',     slug: 'Teaware' },
+  { name: 'Black Tea',  img: '/assets/images/collections/black-tea.png',   slug: 'Black Tea' },
+  { name: 'Green Tea',  img: '/assets/images/collections/green-tea.png',   slug: 'Green Tea' },
+  { name: 'White Tea',  img: '/assets/images/collections/white-tea.png',   slug: 'White Tea' },
+  { name: 'Matcha',     img: '/assets/images/collections/matcha.png',      slug: 'Matcha' },
+  { name: 'Herbal Tea', img: '/assets/images/collections/herbal-tea.png',  slug: 'Herbal Tea' },
+  { name: 'Chai',       img: '/assets/images/collections/chai.png',    slug: 'Chai' },
+  { name: 'Oolong',     img: '/assets/images/collections/oolong.png',      slug: 'Oolong' },
+  { name: 'Rooibos',    img: '/assets/images/collections/rooibos.png',     slug: 'Rooibos' },
+  { name: 'Teaware',    img: '/assets/images/collections/taiwanese.png',     slug: 'Teaware' },
 ];
 
 const BADGES = [
-  { icon: '/assets/local_cafe.png', text: '450+ kinds of looseleaf tea' },
-  { icon: '/assets/redeem.png', text: 'Certificated organic teas' },
-  { icon: '/assets/local_shipping.png', text: 'Free delivery' },
-  { icon: '/assets/sell.png', text: 'Sample for all teas' },
+  { icon: '/assets/images/icons/local_cafe.png', text: '450+ kinds of looseleaf tea' },
+  { icon: '/assets/images/icons/redeem.png', text: 'Certificated organic teas' },
+  { icon: '/assets/images/icons/local_shipping.png', text: 'Free delivery' },
+  { icon: '/assets/images/icons/sell.png', text: 'Sample for all teas' },
 ];
 
 const Home = () => {
@@ -36,7 +36,7 @@ const Home = () => {
       {/* ── Hero ── */}
       <section className="home__hero">
         <div className="home__hero-img">
-          <img src="/assets/hero-bg.png" alt="Loose leaf teas on spoons" />
+          <img src="/assets/images/hero.png" alt="Loose leaf teas on spoons" />
         </div>
         <div className="home__hero-text">
           <h1>Every day is unique,<br />just like our tea</h1>
